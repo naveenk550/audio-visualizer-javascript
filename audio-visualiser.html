@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Audio Visualizer</title>
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="header">
+            <h1> Audio Visualizer </h1>
+        </div>
+        <div id="container">
+            <!-- Upload section to upload Audio Files-->
+            <div id="upload-section">
+                <input type="file" class="upload-button" multiple accept="audio/*" />
+                <label for="upload-button"><i class="fa-solid fa-upload"></i>&nbsp; Choose Or Drop Audio </label>
+            </div>
+            <!-- Audio Visuals-->
+            <div id="visualization-section">
+                <h2> Audio Visuals</h2>
+                <canvas id="canvas"></canvas>
+                <audio id="audio" controls></audio>
+            </div>
+            <!-- Control, Customise the audio and visuals-->
+            <div id="customize-section">
+                <div id="controls">
+                    <h3> Controls </h3>
+                </div>
+                <div id="colors">
+                    <h3> Colours </h3>
+                </div>
+                <div id="themes">
+                    <h3> Themes </h3>
+                </div>
+            </div>
+        </div>
+    </body>   
+</html>

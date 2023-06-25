@@ -1,0 +1,64 @@
+body{
+    background: radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%);
+    font-family: "Poppins", sans-serif;
+}
+
+#header{
+    color: white;
+    text-align: center;
+    margin: 20px;
+}
+
+#upload-section {
+    /* Aliigning the upload section separately */
+    
+    background-color: #FFF;
+    width: 60%;
+    min-width: 27.5em;
+    padding: 3.12em 1.87em;
+    display: flex;
+    align-items: center; 
+    margin: 0 auto;
+    box-shadow: 0 1.25em 3.43em rgba(0, 0, 0, 0.08);
+    border-radius: 0.5em;
+}
+input[type="file"] {
+    /* Hide the file upload input element */
+    display: none;
+}
+label {
+    display: block;
+    position: relative;
+    background-color: #025bee;
+    color: #ffffff;
+    font-size: 1.1em;
+    text-align: center;
+    width: 16em;
+    padding: 1em 0;
+    border-radius: 0.3em;
+    margin: 0 auto 1em auto;
+    cursor: pointer;
+}
+
+#visualization-section{
+    /* Separate section for Audio visualisation */
+    padding: 3.12em 1.87em;
+    box-shadow: 0 1.25em 3.43em rgba(0, 0, 0, 0.08);
+    border-radius: 0.5em;
+    color: #FFF;
+    text-align: center;
+    align-items: center;
+}
+
+audio{
+    display: none;
+}
+
+#customize-section{
+    /* styling the controls, themes and colors section separately */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    color: #FFF;
+    text-align: center
+}
