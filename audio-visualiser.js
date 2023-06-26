@@ -86,58 +86,61 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
       let theme = document.querySelector('input[name="theme"]:checked').value;
       let color = document.querySelector('input[name="color"]:checked').value;
       if(theme === 'Waveform'){ // Displays waveform visuals
-                ctx.fillStyle = "#000";
-                ctx.fillRect(0, 0, WIDTH, HEIGHT);
-                analyser.getByteFrequencyData(dataArray);
-                let start = 0;
-                analyser.getByteTimeDomainData(dataArray);
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        analyser.getByteFrequencyData(dataArray);
+        let start = 0;
+        analyser.getByteTimeDomainData(dataArray);
 
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = color === 'Red' ? 'red' : 'blue';
-                ctx.beginPath();
-                x = 0;
-                for (let i = start; i < bufferLength; i++) {
-                    let v = dataArray[i] / 128.0;
-                    let y = v * HEIGHT / 2;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color === 'Red' ? 'red' : 'blue';
+        ctx.beginPath();
+        x = 0;
+        for (let i = start; i < bufferLength; i++) {
+            let v = dataArray[i] / 128.0;
+            let y = v * HEIGHT / 2;
 
-                    if (i === 0) {
-                        ctx.moveTo(x, y);
-                    } else {
-                        ctx.lineTo(x, y);
-                    }
-
-                    x = i * sliceWidth //frequencyBins/analyser.sampleRate;
-                }
-                ctx.lineTo(WIDTH, dataArray[0] / 128.0  * HEIGHT / 2);
-                ctx.stroke();
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+            
+            x = i * sliceWidth //frequencyBins/analyser.sampleRate;
+        }
+        ctx.lineTo(WIDTH, dataArray[0] / 128.0  * HEIGHT / 2);
+        ctx.stroke();
       } else {
       // Display Bar graph visuals
-      analyser.getByteFrequencyData(dataArray);
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, WIDTH, HEIGHT);
-       x = 0 ; 
-      
-      let r;
-      let g;
-      let b;
-      // Displaying the bars and colors
-      for (let i = 0; i < bufferLength; i++) {
-        barHeight = dataArray[i];
-        if(color === 'Blue'){
-         r = 52;
-         g = 213;
-         b = 235;
-        } else {
-           r = barHeight + (25 * (i/bufferLength));
-           g = 250 * (i/bufferLength);
-           b = 50;
-  
-        }
-        // Colors of each bar
-        ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
-        ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+        analyser.getByteFrequencyData(dataArray);
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        x = 0 ; 
+        
+        let r;
+        let g;
+        let b;
+        // Displaying the bars and colors
+        for (let i = 0; i < bufferLength; i++) {
+          barHeight = dataArray[i];
+          if(color === 'Blue'){
+            r = 52;
+            g = 213;
+            b = 235;
+          } else if(color === 'Red'){
+            r = 217;
+            g = 33;
+            b = 20;
+          } else {
+            r = barHeight + (25 * (i/bufferLength));
+            g = 250 * (i/bufferLength);
+            b = 150;  
+          }
+          // Colors of each bar
+          ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+          ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 
-        x += barWidth + 1;
+          x += barWidth + 1;
       }
       }
     }      
@@ -156,7 +159,7 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
   let currentAudio = document.getElementById("audio");
   currentAudio.load();
   let timer = document.getElementsByClassName('timer')[0]
-  let barProgress = document.getElementById("myBar");
+  let barProgress = document.getElementById("progressBar");
   let width = 0;
   let indexAudio = 0;
 
@@ -175,18 +178,18 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
   // Function to update the progress time of the audio
   function setBarProgress(){
     let progress = (currentAudio.currentTime/currentAudio.duration)*100;
-    document.getElementById("myBar").style.width = progress + "%";
+    document.getElementById("progressBar").style.width = progress + "%";
   }
 
   // Function to rewind the audio by 10 seconds
   function rewind(){
-   currentAudio.currentTime =currentAudio.currentTime - 10;
+    currentAudio.currentTime =currentAudio.currentTime - 10;
     this.setBarProgress(); // set the time progress accordingly
   }
   
   // Function to forward the audio by 10 seconds
   function forward(){
-   currentAudio.currentTime =currentAudio.currentTime + 10;
+    currentAudio.currentTime =currentAudio.currentTime + 10;
     this.setBarProgress(); // set the time progress accordingly
   }
   
@@ -195,11 +198,11 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
     if (currentAudio.paused) {
       document.querySelector('#icon-play').style.display = 'none';
       document.querySelector('#icon-pause').style.display = 'block';
-     currentAudio.play();
+      currentAudio.play();
     }else{
       document.querySelector('#icon-play').style.display = 'block';
       document.querySelector('#icon-pause').style.display = 'none';
-     currentAudio.pause();
+      currentAudio.pause();
     }
   }
 
@@ -209,10 +212,10 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
     let volumeMute = document.querySelector('#icon-vol-mute');
     if (currentAudio.muted == false) {
       currentAudio.muted = true
-       volumeUp.style.display = "none"
-       volumeMute.style.display = "block"
+      volumeUp.style.display = "none"
+      volumeMute.style.display = "block"
     }else{
-     currentAudio.muted = false
+      currentAudio.muted = false
       volumeMute.style.display = "none"
       volumeUp.style.display = "block"
     }

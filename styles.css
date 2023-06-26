@@ -141,3 +141,12 @@ audio{
     color: #000;
     font-size: 20px;
   }
+
+  .list-items{
+      list-style-type: none;
+      margin: 10px;
+      color: #000;
+      font-size: 16px;
+      font-family: "Poppins", sans-serif;
+      font-weight: bold;
+  }
