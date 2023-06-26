@@ -244,3 +244,10 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
       volumeUp.style.display = "block"
     }
   }
+
+  let speedControl = document.getElementById("speedControl");
+	speedControl.addEventListener("change",changeSpeed);
+	
+    function changeSpeed(event){
+		audio.playbackRate = event.target.value;
+	} 
