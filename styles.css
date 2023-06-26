@@ -105,8 +105,7 @@ audio{
   
   .btn-controls > div {
    padding: 5px;
-   margin-top: 18px;
-   margin-bottom: 18px;
+   margin: 18px 30px 0 0;
   }
   
   .audio-info > div {
@@ -124,8 +123,9 @@ audio{
   
   .title{
     margin-left: 10px;
-    width: 210px;
+    width: 275px;
     text-align: center;
+    text-wrap: wrap;
   }
   
   .custom-control-section{

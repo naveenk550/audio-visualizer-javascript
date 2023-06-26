@@ -43,6 +43,7 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
     audio.src = URL.createObjectURL(files);
     audio.load();
     audio.play();
+    document.querySelector('.title').innerHTML = file.name ? file.name : '';
     let context = new AudioContext();
     let src = context.createMediaElementSource(audio); // create a new media element source node to play and manipulate the audio
     let analyser = context.createAnalyser(); // create a node to expose audio time and frequency to create a visualisation
@@ -156,53 +157,76 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
     }
   }
 
-  let currentAudio = document.getElementById("audio");
-  currentAudio.load();
-  let timer = document.getElementsByClassName('timer')[0]
+ 
+  let uploadedAudio = document.getElementById("audio");
+  
+  uploadedAudio.load();
+
+  uploadedAudio.onloadedmetadata = function() {
+    document.getElementsByClassName('duration')[0].innerHTML = getMinutes(uploadedAudio.duration)
+  }.bind(this);
+
+  let timer = document.getElementById("timer");
   let barProgress = document.getElementById("progressBar");
   let width = 0;
-  let indexAudio = 0;
+
+  function getMinutes(t){
+    let min = parseInt(parseInt(t)/60);
+    let sec = parseInt(t%60);
+    if (sec < 10) {
+      sec = "0"+sec
+    }
+    if (min < 10) {
+      min = "0"+min
+    }
+    return min+":"+sec
+  }
+
+
+  let progressbar = document.querySelector('#progress')
+  progressbar.addEventListener("click", seek.bind(this));
+
+
+  function seek(event) {
+    let percent = event.offsetX / progressbar.offsetWidth;
+    uploadedAudio.currentTime = percent * uploadedAudio.duration;
+    barProgress.style.width = percent*100 + "%";
+  }
 
   function onTimeUpdate() {
-    let t =currentAudio.currentTime;
-    timer.innerHTML = this.getMinutes(t);
+    let t = uploadedAudio.currentTime;
+    timer.innerHTML = getMinutes(t);
     this.setBarProgress();
-    if (currentAudio.ended) {
-      document.querySelector('#icon-play').style.display = 'block';
-      document.querySelector('#icon-pause').style.display = 'none';
-      this.pauseToPlay(this.indexAudio)
-      
-    }
   }
 
   // Function to update the progress time of the audio
   function setBarProgress(){
-    let progress = (currentAudio.currentTime/currentAudio.duration)*100;
-    document.getElementById("progressBar").style.width = progress + "%";
+    let progress = (uploadedAudio.currentTime/uploadedAudio.duration) * 100;
+    barProgress.style.width = progress + "%";
   }
 
   // Function to rewind the audio by 10 seconds
   function rewind(){
-    currentAudio.currentTime =currentAudio.currentTime - 10;
+    uploadedAudio.currentTime =uploadedAudio.currentTime - 10;
     this.setBarProgress(); // set the time progress accordingly
   }
   
   // Function to forward the audio by 10 seconds
   function forward(){
-    currentAudio.currentTime =currentAudio.currentTime + 10;
+    uploadedAudio.currentTime =uploadedAudio.currentTime + 10;
     this.setBarProgress(); // set the time progress accordingly
   }
   
   // Function to play and pause the Audio
   function playPause() {
-    if (currentAudio.paused) {
+    if (uploadedAudio.paused) {
       document.querySelector('#icon-play').style.display = 'none';
       document.querySelector('#icon-pause').style.display = 'block';
-      currentAudio.play();
+      uploadedAudio.play();
     }else{
       document.querySelector('#icon-play').style.display = 'block';
       document.querySelector('#icon-pause').style.display = 'none';
-      currentAudio.pause();
+      uploadedAudio.pause();
     }
   }
 
@@ -210,12 +234,12 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
   function toggleMute(){
     let volumeUp = document.querySelector('#icon-vol-up');
     let volumeMute = document.querySelector('#icon-vol-mute');
-    if (currentAudio.muted == false) {
-      currentAudio.muted = true
+    if (uploadedAudio.muted == false) {
+      uploadedAudio.muted = true
       volumeUp.style.display = "none"
       volumeMute.style.display = "block"
     }else{
-      currentAudio.muted = false
+      uploadedAudio.muted = false
       volumeMute.style.display = "none"
       volumeUp.style.display = "block"
     }
