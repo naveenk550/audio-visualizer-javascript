@@ -93,7 +93,11 @@ audio{
     padding-top: 10px;
     width: 30px;
   }
-  
+  .btn-play {
+    cursor: pointer;
+    padding-top: 10px;
+    width: 30px;
+  }
   .btn-controls, .audio-info{
     display: flex;
     align-items: center;
