@@ -20,7 +20,7 @@ User can upload an audio and see the audio visuals based on time and frequency. 
 
 ## How to use this
 
-First clone or [download a release](https://github.com/naveenk550/audio-visualizer-javascript), that is the starting point for your site.
+First clone or [download a release](https://github.com/naveenk550/audio-visualizer-javascript).
 
  - [ ] Open `audio-visualiser.html` in your favorite text editor and make a great web page, add other content if necessary.
 
