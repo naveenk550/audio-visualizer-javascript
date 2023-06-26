@@ -29,15 +29,57 @@
             <div id="customize-section">
                 <div id="controls">
                     <h3> Controls </h3>
-                    <div class="player-ctn"></div>
+                    <div class="custom-control-section">
+                        <div class="audio-info">
+                          <div class="timer">00:00</div>
+                          <div class="title"></div>
+                          <div class="duration">00:00</div>
+                        </div>
+                        <div id="myProgress">
+                          <div id="progressBar"></div>
+                        </div>
+                        <div class="btn-controls">
+                        
+                           <div class="btn-action" onclick="rewind()">
+                              <div id="btn-faws-rewind">
+                                <i class='fas fa-backward'></i>
+                              </div>
+                           </div>
+                           <div class="btn-action" onclick="playPause()">
+                              <div id="btn-faws-play-pause">
+                                <i class='fas fa-play' id="icon-play"></i>
+                                <i class='fas fa-pause' id="icon-pause" style="display: none"></i>
+                              </div>
+                           </div>
+                           <div class="btn-play" onclick="forward()">
+                              <div id="btn-faws-forward">
+                                <i class='fas fa-forward'></i>
+                              </div>
+                           </div>
+                          
+                           <div class="btn-mute" id="toggleMute" onclick="toggleMute()">
+                              <div id="btn-faws-volume">
+                                <i id="icon-vol-up" class='fas fa-volume-up'></i>
+                                <i id="icon-vol-mute" class='fas fa-volume-mute' style="display: none"></i>
+                              </div>
+                           </div>
+                        </div>
+                     
+                      </div>
                 </div>
                 <div id="colors">
                     <h3> Colours </h3>
-                    <div class="player-ctn"></div>
+                    <div class="custom-control-section">
+                        Red<input type="radio" name="color" value="Red" checked/>
+                        Blue<input type="radio" name="color" value="Blue" />
+                    </div>
                 </div>
                 <div id="themes">
                     <h3> Themes </h3>
-                    <div class="player-ctn"></div>
+                    <div class="custom-control-section">
+                        Bar Graph<input type="radio" name="theme" value="BarGraph" checked/>
+                        Waveform<input type="radio" name="theme" value="Waveform" />
+                    </div>
                 </div>
                 
             </div>
