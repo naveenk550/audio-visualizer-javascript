@@ -1,6 +1,8 @@
 body{
     background: radial-gradient(circle at 85.4% 50.8%, rgb(14, 72, 222) 0%, rgb(3, 22, 65) 74.2%);
     font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 #header{
@@ -58,10 +60,9 @@ audio{
     /* styling the controls, themes and colors section separately */
     display: grid;
     grid-template-columns: auto auto auto;
-    padding: 10px;
     color: #FFF;
     text-align: center;
-    margin: 20px 50px;
+    margin: 20px 0;
 }
 
 #controls, #colors, #themes {
@@ -69,7 +70,7 @@ audio{
     background: linear-gradient(to right, rgb(0, 82, 212), rgb(67, 100, 247), rgb(111, 177, 252));
     border-radius: 10px;
     min-height: 300px;
-    margin: 20px 40px;
+    margin: 20px 0 20px 20px;
 } 
 
 /* Audio Progress bar styling */

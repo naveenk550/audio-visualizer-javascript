@@ -122,7 +122,7 @@ document.querySelectorAll(".upload-button").forEach((uploadItems) => {
         let g;
         let b;
         // Displaying the bars and colors
-        for (let i = 0; i < bufferLength; i++) {
+        for (let i = 0; i < 5; i++) {
           barHeight = dataArray[i];
           if(color === 'Blue'){
             r = 52;
